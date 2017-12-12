@@ -1,6 +1,14 @@
 # fluffy-octo-carnival
 Learning Python ..
 
+### git config
+```
+$ git config credential.helper store
+$ git push http://example.com/repo.git
+Username: <type your username>
+Password: <type your password>
+```
+
 ### virtualenv
 ```
 $ pip install virtualenv --user

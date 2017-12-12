@@ -9,7 +9,8 @@ soup = BeautifulSoup(r.content, "html.parser")
 
 h1_all = soup.find_all('h1')
 for element in h1_all:
-    print(element)
-    print(element.string)
-
-     
+	if element.string[0:5] == "1 XMR":
+		#print(element)
+    	#print(element.get('style'))
+		print(element.string)
+    	

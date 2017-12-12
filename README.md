@@ -4,7 +4,7 @@ Learning Python ..
 ### git config
 ```
 $ git config credential.helper store
-$ git push http://example.com/repo.git
+$ git push https://github.com/ccrivelli/fluffy-octo-carnival.git
 Username: <type your username>
 Password: <type your password>
 ```
@@ -32,5 +32,5 @@ $ pip install beautifulsoup4
 
 ```
 
-..
+
 

@@ -1,5 +1,7 @@
 # fluffy-octo-carnival
-Learning Python ..
+Playing around with Python to learn the language.  
+
+Python Basic Tutorial - http://thepythonguru.com   
 
 ### git config
 ```
@@ -88,7 +90,9 @@ $ source env/bin/activate
 ## kivy experiments
 
 See: https://kivy.org   
-And: https://kivy.org/docs/installation/installation-linux.html  
+
+
+Installation - https://kivy.org/docs/installation/installation-linux.html  
 
 ```
 # dnf install -y redhat-rpm-config
@@ -114,3 +118,7 @@ Successfully installed kivy-1.10.0
 
 ```
 
+Create an application - https://kivy.org/docs/guide/basic.html#quickstart   
+
+
+ 

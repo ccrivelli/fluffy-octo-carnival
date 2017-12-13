@@ -84,6 +84,28 @@ $ source env/bin/activate
 
 ```
 
+## kivy experiments
+
+See: https://kivy.org 
+RPM for Fedora 26: https://fedora.pkgs.org/26/rpm-sphere/python-kivy-1.9.1-3.1.x86_64.rpm.html
+
+```
+# cd /etc/yum.repos.d/
+# vim rpm-sphere.repo
+
+[rpm-sphere]
+name=RPM Sphere
+baseurl=http://ftp.gwdg.de/pub/opensuse/repositories/home:/zhonghuaren/Fedora_26/
+gpgkey=http://ftp.gwdg.de/pub/opensuse/repositories/home:/zhonghuaren/Fedora_26/repodata/repomd.xml.key
+enabled=1
+gpgcheck=1
 
 
+# dnf install python-kivy
+
+(TODO)
+
+
+
+```
 

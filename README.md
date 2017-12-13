@@ -9,10 +9,33 @@ Username: <type your username>
 Password: <type your password>
 ```
 
-### virtualenv and repo setup
+### useful git commands
+```
+-- work on develop branch
+$ git add -A
+$ git commit -m 'commit name'
+$ git push origin develop
+
+-- show branch
+$ git branch
+
+-- work on master branch
+$ git checkout master
+$ git merge develop master
+$ git push origin master
+
+```
+
+### virtual environment and .gitignore (save deps)
+
+The virtualenv needs to be created on the local machine as it's not portable.
+Only the project folder goes to github repository.
+
+
 ```
 -- install
 $ pip install virtualenv --user
+
 
 -- create venv
 $ virtualenv -p /usr/bin/python3 env
@@ -33,9 +56,27 @@ $ vim  .gitignore
 ~                                                                                                                                                                                                                  
 ~       
 
-
 ```
 
+### clone repo ready to start (restore deps)
+```
+-- clone repo
+$ git clone https://github.com/ccrivelli/fluffy-octo-carnival.git
+
+-- create env
+$ virtualenv -p /usr/bin/python3 env
+
+-- activate env
+$ source env/bin/activate
+
+-- restore deps
+(env) $ pip install -r requirements.txt 
+
+-- deactivate
+(env) $ deactivate
+
+
+```
 
 
 

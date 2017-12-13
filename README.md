@@ -88,24 +88,28 @@ $ source env/bin/activate
 ## kivy experiments
 
 See: https://kivy.org   
-RPM for Fedora 26: https://fedora.pkgs.org/26/rpm-sphere/python-kivy-1.9.1-3.1.x86_64.rpm.html  
+And: https://kivy.org/docs/installation/installation-linux.html  
 
 ```
-# cd /etc/yum.repos.d/
-# vim rpm-sphere.repo
+# dnf install -y redhat-rpm-config
+# dnf install -y make mercurial automake gcc gcc-c++ SDL_ttf-devel SDL_mixer-devel mesa-libGLES mesa-libGLES-devel gstreamer-plugins-good gstreamer gstreamer-python mtdev-devel python-devel  
 
-[rpm-sphere]
-name=RPM Sphere
-baseurl=http://ftp.gwdg.de/pub/opensuse/repositories/home:/zhonghuaren/Fedora_26/
-gpgkey=http://ftp.gwdg.de/pub/opensuse/repositories/home:/zhonghuaren/Fedora_26/repodata/repomd.xml.key
-enabled=1
-gpgcheck=1
+-- important
+# dnf install -y  python3-devel
 
+-- inside virtualenv
+(env) $ pip install --upgrade pip virtualenv setuptools
+(env) $ pip install numpy
 
-# dnf install python-kivy
+-- getting compilation error with cython 0.27 - https://github.com/SerpentAI/SerpentAI/issues/58   
+(env) $ pip install Cython==0.26
+(env) $ pip install kivy
+(env) $ pip install pygame
 
-(TODO)
-
+..
+Successfully built kivy
+Installing collected packages: kivy
+Successfully installed kivy-1.10.0
 
 
 ```

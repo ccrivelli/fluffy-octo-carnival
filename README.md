@@ -36,7 +36,6 @@ Only the project folder goes to github repository.
 -- install
 $ pip install virtualenv --user
 
-
 -- create venv
 $ virtualenv -p /usr/bin/python3 env
 
@@ -47,14 +46,18 @@ $ source env/bin/activate
 (env) $ pip install bs4
 (env) $ pip freeze >  requirements.txt
 
+-- example execution
+(env) $ python venom/run.py 
+1 XMR = $436.61
+
 (env) $ deactivate
 
 -- add env to .gitignore as it is not portable
 $ vim  .gitignore
 
 /env/*
-~                                                                                                                                                                                                                  
-~       
+~
+~
 
 ```
 
@@ -69,12 +72,15 @@ $ virtualenv -p /usr/bin/python3 env
 -- activate env
 $ source env/bin/activate
 
+-- example execution
+(env) $ python venom/run.py
+1 XMR = $436.61
+
 -- restore deps
 (env) $ pip install -r requirements.txt 
 
 -- deactivate
 (env) $ deactivate
-
 
 ```
 

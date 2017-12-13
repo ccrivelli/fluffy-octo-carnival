@@ -9,28 +9,34 @@ Username: <type your username>
 Password: <type your password>
 ```
 
-### virtualenv
+### virtualenv and repo setup
 ```
+-- install
 $ pip install virtualenv --user
 
-$ mkdir venom
-$ virtualenv -p /usr/bin/python3 venom
-$ cd venom/
+-- create venv
+$ virtualenv -p /usr/bin/python3 env
 
-$ source  bin/activate
+-- activate to work and save deps, then deactivate
+$ source env/bin/activate
 
-$ pip install requests
-(copied under lib/python3.6/site-packages/requests)
+(env) $ pip install requests
+(env) $ pip install bs4
+(env) $ pip freeze >  requirements.txt
 
-$ deactivate
+(env) $ deactivate
+
+-- add env to .gitignore as it is not portable
+$ vim  .gitignore
+
+/env/*
+~                                                                                                                                                                                                                  
+~       
+
 
 ```
 
-### deps
-```
-$ pip install beautifulsoup4
 
-```
 
 
 

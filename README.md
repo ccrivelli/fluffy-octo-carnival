@@ -72,12 +72,13 @@ $ virtualenv -p /usr/bin/python3 env
 -- activate env
 $ source env/bin/activate
 
+-- restore deps
+(env) $ pip install -r requirements.txt 
+
 -- example execution
 (env) $ python venom/run.py
 1 XMR = $436.61
 
--- restore deps
-(env) $ pip install -r requirements.txt 
 
 -- deactivate
 (env) $ deactivate
@@ -86,8 +87,8 @@ $ source env/bin/activate
 
 ## kivy experiments
 
-See: https://kivy.org 
-RPM for Fedora 26: https://fedora.pkgs.org/26/rpm-sphere/python-kivy-1.9.1-3.1.x86_64.rpm.html
+See: https://kivy.org   
+RPM for Fedora 26: https://fedora.pkgs.org/26/rpm-sphere/python-kivy-1.9.1-3.1.x86_64.rpm.html  
 
 ```
 # cd /etc/yum.repos.d/

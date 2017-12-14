@@ -57,7 +57,8 @@ $ source env/bin/activate
 -- add env to .gitignore as it is not portable
 $ vim  .gitignore
 
-/env/*
+/venom/env/*
+
 ~
 ~
 
@@ -107,13 +108,23 @@ Installation - https://kivy.org/docs/installation/installation-linux.html
 
 -- getting compilation error with cython 0.27 - https://github.com/SerpentAI/SerpentAI/issues/58   
 (env) $ pip install Cython==0.26
-(env) $ pip install kivy
 (env) $ pip install pygame
 
+
+-- install stable version of kivy 
+(env) $ pip install kivy
 ..
-Successfully built kivy
-Installing collected packages: kivy
 Successfully installed kivy-1.10.0
+
+
+OR
+
+-- install the development version of kivy - see this issue: https://github.com/kivy/kivy/issues/5457   
+(env) pip install git+https://github.com/kivy/kivy.git@master
+..
+Successfully installed Kivy-1.10.1.dev0
+
+
 
 
 ```

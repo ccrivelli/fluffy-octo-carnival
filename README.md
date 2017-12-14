@@ -131,5 +131,19 @@ Successfully installed Kivy-1.10.1.dev0
 
 Create an application - https://kivy.org/docs/guide/basic.html#quickstart   
 
+### add permissions for events
 
+```
+-- to avoid
+[WARNING] [MTD         ] Unable to open device "/dev/input/event7". Please ensure you have the appropriate permissions.
+
+-- run
+# usermod -a -G input lotek
+
+
+$ ls -ltrl /dev/input/event7
+crw-rw----. 1 root input 13, 71 Dec 13 16:36 /dev/input/event7
+
+
+```
  

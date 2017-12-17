@@ -159,12 +159,10 @@ crw-rw----. 1 root input 13, 71 Dec 13 16:36 /dev/input/event7
 
 ```
 
-```
 Understanding Widgets - https://kivy.org/docs/tutorials/firstwidget.html  
 Kv language - https://kivy.org/docs/guide/lang.html  
 
 
-``` 
 
 
 

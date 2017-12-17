@@ -38,6 +38,9 @@ Only the project folder goes to github repository.
 -- install
 $ pip install virtualenv --user
 
+-- go into the project folder
+$ cd venom
+
 -- create venv
 $ virtualenv -p /usr/bin/python3 env
 
@@ -69,6 +72,9 @@ $ vim  .gitignore
 -- clone repo
 $ git clone https://github.com/ccrivelli/fluffy-octo-carnival.git
 
+-- go into the project folder
+$ cd venom
+
 -- create env
 $ virtualenv -p /usr/bin/python3 env
 
@@ -77,6 +83,10 @@ $ source env/bin/activate
 
 -- restore deps
 (env) $ pip install -r requirements.txt 
+
+>> if it does not work for kivy, install it manually (see kivy section below)
+>> e.g. cannot install dev version 'Kivy==1.10.1.dev0' from pip
+
 
 -- example execution
 (env) $ python venom/run.py
@@ -131,19 +141,41 @@ Successfully installed Kivy-1.10.1.dev0
 
 Create an application - https://kivy.org/docs/guide/basic.html#quickstart   
 
-### add permissions for events
+#### post install taks
 
 ```
--- to avoid
-[WARNING] [MTD         ] Unable to open device "/dev/input/event7". Please ensure you have the appropriate permissions.
 
--- run
+
+-- add permissions for event
 # usermod -a -G input lotek
 
 
 $ ls -ltrl /dev/input/event7
 crw-rw----. 1 root input 13, 71 Dec 13 16:36 /dev/input/event7
 
+-- otherwise get this error
+[WARNING] [MTD         ] Unable to open device "/dev/input/event7". Please ensure you have the appropriate permissions.
+
 
 ```
- 
+
+```
+Understanding Widgets - https://kivy.org/docs/tutorials/firstwidget.html  
+Kv language - https://kivy.org/docs/guide/lang.html  
+
+
+``` 
+
+
+
+## notes
+
+- cpuminer (ltc) to test  
+- python miners to reasearch (ltc)
+- visual miner (like a game), see all the user connected to help you ...
+- twisted framework (event-driven networking engine written in Python) - https://twistedmatrix.com/   
+- flask microframework (for web apps) - http://flask.pocoo.org/
+
+
+
+

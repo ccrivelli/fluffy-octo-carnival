@@ -163,8 +163,11 @@ Understanding Widgets - https://kivy.org/docs/tutorials/firstwidget.html
 Kv language - https://kivy.org/docs/guide/lang.html  
 
 
-
-
+## sublime settings (tabs into space)
+```
+"tab_size": 4,
+"translate_tabs_to_spaces": true
+```
 
 ## notes
 

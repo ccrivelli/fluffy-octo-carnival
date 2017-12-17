@@ -31,10 +31,12 @@ class MyApp(App):
 		parent.add_widget(self.childwidget)
 		parent.add_widget(clearbutton)
 		return parent
+        
 
 
 	def clear_canvas(self, obj):
 		self.childwidget.canvas.clear()
+
 
 
 

@@ -33,9 +33,29 @@ class PongGame(Widget):
     def update(self, dt):
         self.ball.move()
 
+        # print coords
+        print ('self.ball.x: ', self.ball.x)
+        print ('self.ball.y: ', self.ball.y)
+        print ('self.ball.top: ', self.ball.top, '(self.height:)', self.height)
+        print ('self.ball.right: ', self.ball.right, '(self.width:)', self.width)
+
+        # bounce off top and bottom
+        if (self.ball.y < 0) or (self.ball.top > self.height):
+            print ('>>>>>>>>>>>>>>>>>>>>>>>>>>> bounce off top and bottom <<')
+            self.ball.velocity_y *= -1
+
+        # bounce off left and right
+        if (self.ball.x < 0) or (self.ball.right > self.width):
+            print ('>>>>>>>>>>>>>>>>>>>>>>>>>>> bounce off left and right <<')
+            self.ball.velocity_x *= -1
+
+        print('')
+
     def serve_ball(self):
         self.ball.center = self.center 
         self.ball.velocity = Vector(4,0).rotate(randint(0,360))
+
+
 
 
 class PongBall(Widget):

@@ -6,7 +6,7 @@ Python Basic Tutorial - http://thepythonguru.com
 
 ## projects
 
-[venom](./venom) - python language and kivy (GUI) 
+[venom](./venom) - python language and kivy (GUI)    
 [hydra](./hydra) - python and Tenable SecurityCenter5  
 
 ## roadmap

@@ -1,8 +1,13 @@
 # hydra
 
-Python and SecurityCenter5   
+## references 
 
-https://github.com/SteveMcGrath/pySecurityCenter    
+Python and SecurityCenter5 - https://github.com/SteveMcGrath/pySecurityCenter    
+Tenable API Doc - https://support.tenable.com/support-center/cerberus-support-center/includes/widgets/sc_api/index.html   
+
+Python Requests - http://docs.python-requests.org/en/latest/user/quickstart/#make-a-request  
+Requests SSL Cert Verification - http://docs.python-requests.org/en/master/user/advanced/?highlight=ssl#ssl-cert-verification   
+
 
 ## setting up virtualenv 
 ```
@@ -87,8 +92,9 @@ Python 3.6.3
 
 -- create virtual env
 
+# cd Python-3.6.3
 # mkdir env
-# Python-3.6.3/python -m venv env
+# ./python -m venv env
 
 -- activate
 # source env/bin/activate
@@ -127,4 +133,51 @@ $ deactivate
 ## Python - IP Addresses, Subnets and Ranges
 
 http://netaddr.readthedocs.io/en/latest/tutorial_01.html   
+
+
+#### login via requests
+
+```
+
+>>> import requests
+>>> s = requests.Session()
+>>> s.verify = False
+>>> s.get('https://hostname.com.au')
+<Response [200]>
+```
+OK
+
+```
+>>> s.post('https://hostname.com.au/rest/token', json = {'username':'admin', 'password':'<password>'})
+<Response [200]>
+```
+
+OK
+
+```
+-- doublecheck with failed auth
+
+>>> resp = s.post('https://hostname.com.au/rest/token', json = {'username':'admin', 'password':'xxxxxxxx'})
+>>> resp.content
+b'{"type":"regular","response":[],"error_code":161,"error_msg":"Invalid login credentials\\n","warnings":[],"timestamp":1513665181}\n'
+
+
+-- but, when logging in as admin, sometimes don't get the token (maybe wait for the session to expire? Logout? Delete token?)
+
+e.g.
+
+-- soc --
+
+>>> resp = s.post('https://hostname.com.au/rest/token', json = {'username':'soc', 'password':'<password>'})
+>>> resp.text
+'{"type":"regular","response":{"lastLogin":"1513661355","lastLoginIP":"10.3.4.5","failedLogins":"0","failedLoginIP":"10.1.2.3","lastFailedLogin":"1501817041","token":1599878119,"unassociatedCert":"false"},"error_code":0,"error_msg":"","warnings":[],"timestamp":1513665314}\n'
+
+-- admin --
+
+>>> resp = s.post('https://hostname.com.au/rest/token', json = {'username':'admin', 'password':'<password>'})
+>>> resp.content
+b'{"type":"regular","response":{"releaseSession":true},"error_code":0,"error_msg":"","warnings":[],"timestamp":1513665379}\n'
+```
+
+
 

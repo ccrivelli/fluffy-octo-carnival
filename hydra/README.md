@@ -27,11 +27,40 @@ $ mkdir code
 
 ## Install Python3 isolated env (tested on RHEL7)
 
+### Option1 (Not good) - dnf download on a different machine (Fedora 26) 
+```
 
+# dnf download --resolve python3
+# dnf download --resolve python3-pip
+```
 
+Deps Issue when installing system-python-libs:
 
+```
 
-###Option1 - Compile in a separate folder (Working)
+# rpm -ivh system-python-libs-3.6.3-2.fc26.i686.rpm
+warning: system-python-libs-3.6.3-2.fc26.i686.rpm: Header V3 RSA/SHA256 Signature, key ID 64dab85d: NOKEY
+error: Failed dependencies:
+    glibc(x86-32) >= 2.24.90-26 is needed by system-python-libs-3.6.3-2.fc26.i686
+    libbz2.so.1 is needed by system-python-libs-3.6.3-2.fc26.i686
+    libc.so.6(GLIBC_2.25) is needed by system-python-libs-3.6.3-2.fc26.i686
+    libcrypto.so.1.1 is needed by system-python-libs-3.6.3-2.fc26.i686
+    libcrypto.so.1.1(OPENSSL_1_1_0) is needed by system-python-libs-3.6.3-2.fc26.i686
+    libexpat.so.1 is needed by system-python-libs-3.6.3-2.fc26.i686
+    libffi.so.6 is needed by system-python-libs-3.6.3-2.fc26.i686
+    libgdbm.so.4 is needed by system-python-libs-3.6.3-2.fc26.i686
+    libgdbm_compat.so.4 is needed by system-python-libs-3.6.3-2.fc26.i686
+    libncursesw.so.6 is needed by system-python-libs-3.6.3-2.fc26.i686
+    libpanelw.so.6 is needed by system-python-libs-3.6.3-2.fc26.i686
+    libreadline.so.7 is needed by system-python-libs-3.6.3-2.fc26.i686
+    libsqlite3.so.0 is needed by system-python-libs-3.6.3-2.fc26.i686
+    libssl.so.1.1 is needed by system-python-libs-3.6.3-2.fc26.i686
+    libssl.so.1.1(OPENSSL_1_1_0) is needed by system-python-libs-3.6.3-2.fc26.i686
+    libtinfo.so.6 is needed by system-python-libs-3.6.3-2.fc26.i686
+
+```
+
+### Option2 (Best one) - Compile in a separate folder 
 
 ref. http://rspeer.github.io/blog/2014/03/31/python-3-4-from-scratch/   
 
@@ -93,37 +122,7 @@ $ deactivate
 
 ```
 
-###Option2 - dnf download on a different machine (Fedora 26) 
-```
 
-# dnf download --resolve python3
-# dnf download --resolve python3-pip
-```
-
-Deps Issue when installing system-python-libs:
-```
-
-# rpm -ivh system-python-libs-3.6.3-2.fc26.i686.rpm
-warning: system-python-libs-3.6.3-2.fc26.i686.rpm: Header V3 RSA/SHA256 Signature, key ID 64dab85d: NOKEY
-error: Failed dependencies:
-    glibc(x86-32) >= 2.24.90-26 is needed by system-python-libs-3.6.3-2.fc26.i686
-    libbz2.so.1 is needed by system-python-libs-3.6.3-2.fc26.i686
-    libc.so.6(GLIBC_2.25) is needed by system-python-libs-3.6.3-2.fc26.i686
-    libcrypto.so.1.1 is needed by system-python-libs-3.6.3-2.fc26.i686
-    libcrypto.so.1.1(OPENSSL_1_1_0) is needed by system-python-libs-3.6.3-2.fc26.i686
-    libexpat.so.1 is needed by system-python-libs-3.6.3-2.fc26.i686
-    libffi.so.6 is needed by system-python-libs-3.6.3-2.fc26.i686
-    libgdbm.so.4 is needed by system-python-libs-3.6.3-2.fc26.i686
-    libgdbm_compat.so.4 is needed by system-python-libs-3.6.3-2.fc26.i686
-    libncursesw.so.6 is needed by system-python-libs-3.6.3-2.fc26.i686
-    libpanelw.so.6 is needed by system-python-libs-3.6.3-2.fc26.i686
-    libreadline.so.7 is needed by system-python-libs-3.6.3-2.fc26.i686
-    libsqlite3.so.0 is needed by system-python-libs-3.6.3-2.fc26.i686
-    libssl.so.1.1 is needed by system-python-libs-3.6.3-2.fc26.i686
-    libssl.so.1.1(OPENSSL_1_1_0) is needed by system-python-libs-3.6.3-2.fc26.i686
-    libtinfo.so.6 is needed by system-python-libs-3.6.3-2.fc26.i686
-
-``
 
 ## Python - IP Addresses, Subnets and Ranges
 

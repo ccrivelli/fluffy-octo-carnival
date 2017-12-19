@@ -92,9 +92,9 @@ Python 3.6.3
 
 -- create virtual env
 
-# cd Python-3.6.3
+
 # mkdir env
-# ./python -m venv env
+# Python 3.6.3/python -m venv env
 
 -- activate
 # source env/bin/activate
@@ -118,8 +118,10 @@ $ (env) pip install --trusted-host pypi.python.org netaddr
 
 
 -- save deps
-$ pip freeze > requirements.txt
+$ (env) pip freeze > requirements.txt
 
+-- restore deps
+$ (env) pip install --trusted-host pypi.python.org -r requirements.txt 
 
 -- deactivate
 $ deactivate

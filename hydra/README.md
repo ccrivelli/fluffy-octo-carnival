@@ -196,7 +196,8 @@ Traceback (most recent call last):
 KeyError: 'token'
 ```
 
-When manually log in on the SecurityCenter see this message:         
+When manually log in on the SecurityCenter see this message:     
+        
 ![Alt text](./img/SecurityCenter-TooManySessions.png?raw=true "SecurityCenter-TooManySessions")
 
 

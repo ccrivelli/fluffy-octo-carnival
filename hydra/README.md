@@ -182,4 +182,23 @@ b'{"type":"regular","response":{"releaseSession":true},"error_code":0,"error_msg
 ```
 
 
+### Too many sessions
+
+Python error because no token is returned:
+```
+Traceback (most recent call last):
+  File "main.py", line 140, in <module>
+    sct.login()
+  File "main.py", line 37, in login
+    sc.login(username, password)
+  File "/opt/python3/env/lib/python3.6/site-packages/securitycenter/sc5.py", line 45, in login
+    self._token = resp.json()['response']['token']
+KeyError: 'token'
+```
+
+Reason:
+![Alt text](./img/SecurityCenter-TooManySessions.png?raw=true "SecurityCenter-TooManySessions")
+
+
+
 

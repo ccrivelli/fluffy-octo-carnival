@@ -3,6 +3,8 @@ import  getpass
 from netaddr import *
 from os import listdir
 import re
+import string
+
 
 class SecurityCenterTool():
     
@@ -78,14 +80,19 @@ class SecurityCenterTool():
             subnet_strings = f.read().splitlines()
             print(subnet_strings)
 
-        # search for IP Ranges like 10.1.2.0-10.1.5.255
+        # search for IP Ranges like 10.1.2.0-10.1.5.255 and create a new list of subnets with no IP ranges
+        l = []
+        
         for iprange in subnet_strings:
-            if re.search('(?<=-)\w+(?)',iprange):
+            if re.search('(?<=-)\w+',iprange):
                 print("Found!! >> " + iprange)
+                x_subnet = iprange.split('-')
+                print(x_subnet)
+                #cidr_subnet = IPNetwork(x_subnet)
+                #l.append(cidr_subnet)
             print("iprange: " + iprange)
-
-        # define an empty list 
-        l = [] 
+            #cidr_subnet = IPNetwork(iprange)
+            #l.append(cidr_subnet)
 
         ''' to be uncommented ----------------------------------        
         # iter the string list and append to IPNetwork list

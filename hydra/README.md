@@ -9,7 +9,7 @@ Python Requests - http://docs.python-requests.org/en/latest/user/quickstart/#mak
 Requests SSL Cert Verification - http://docs.python-requests.org/en/master/user/advanced/?highlight=ssl#ssl-cert-verification   
 
 
-## setting up virtualenv 
+## setting up virtualenv (python installed via package - full control of the machine)
 ```
 
 -- go to project folder
@@ -94,7 +94,7 @@ Python 3.6.3
 
 
 # mkdir env
-# Python 3.6.3/python -m venv env
+# Python-3.6.3/python -m venv env
 
 -- activate
 # source env/bin/activate
@@ -197,8 +197,40 @@ KeyError: 'token'
 ```
 
 When manually log in on the SecurityCenter see this message:     
-        
+
 ![Alt text](./img/SecurityCenter-TooManySessions.png?raw=true "SecurityCenter-TooManySessions")
+
+
+
+## Unions, intersections and differences
+
+
+```
+>>> from netaddr import *
+>>> s = IPSet(['0.0.0.0/0'])
+>>> t = IPSet(['10.1.1.0/24'])
+>>> s
+IPSet(['0.0.0.0/0'])
+>>> t
+IPSet(['10.1.1.0/24'])
+
+-- union 
+>>> s | t
+IPSet(['0.0.0.0/0'])
+
+-- intersection
+>>> s & t
+IPSet(['10.1.1.0/24'])
+
+-- difference
+>>> s ^ t
+IPSet(['0.0.0.0/5', '8.0.0.0/7', '10.0.0.0/16', '10.1.0.0/24', '10.1.2.0/23', '10.1.4.0/22', '10.1.8.0/21', '10.1.16.0/20', '10.1.32.0/19', '10.1.64.0/18', '10.1.128.0/17', '10.2.0.0/15', '10.4.0.0/14', '10.8.0.0/13', '10.16.0.0/12', '10.32.0.0/11', '10.64.0.0/10', '10.128.0.0/9', '11.0.0.0/8', '12.0.0.0/6', '16.0.0.0/4', '32.0.0.0/3', '64.0.0.0/2', '128.0.0.0/1'])
+>>> 
+
+    
+```
+
+
 
 
 

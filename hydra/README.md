@@ -200,6 +200,7 @@ When manually log in on the SecurityCenter see this message:
 
 ![Alt text](./img/SecurityCenter-TooManySessions.png?raw=true "SecurityCenter-TooManySessions")
 
+This happens if the logout function is not called properly for a certain number of times.   
 
 
 ## Unions, intersections and differences
@@ -229,6 +230,11 @@ IPSet(['0.0.0.0/5', '8.0.0.0/7', '10.0.0.0/16', '10.1.0.0/24', '10.1.2.0/23', '1
 
     
 ```
+
+
+
+
+
 
 
 

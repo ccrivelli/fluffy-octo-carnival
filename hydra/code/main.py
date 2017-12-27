@@ -103,8 +103,41 @@ class SecurityCenterTool():
         print("++ Convert " + file + " into IPNetwork list ++")
         print(" ")
         return l  
+  
 
+    def repositoriesDiff(self, file1, file2):
 
+        ''' importing 2 files containing ip lists, converting into IPSet then performing a diff'''
+        s1 = IPSet()
+        s2 = IPSet()
+
+        # read lines into a list
+        with open(file1) as f1:
+            l1 = f1.read().splitlines()
+            print("repo1")
+            print(l1)
+
+        # create the IPSet
+        for ip1 in l1:
+            s1.add(ip1)
+
+        print(s1)    
+
+        # read lines into a list
+        with open(file2) as f2:
+            l2 = f2.read().splitlines()
+            print("repo2")
+            print(l2)
+
+        # create the second IPSet
+        for ip2 in l2:
+            s2.add(ip2)
+
+        print(s2)
+
+        print("diff")
+        s_diff = s1 ^ s2
+        print(s_diff)
 
     def logout(self):
 
@@ -127,11 +160,11 @@ class SecurityCenterTool():
         print("    |    |_____| |_____| |_____                                    ")
         print(" _________________________________________________________________ ")                                                                          
         print("                                                                   ") 
-        print("1. Login                       ")
-        print("2. Export repositories to file ")
-        print("3. Print master list           ")
-        print("4. Print repositories          ")
-        print("5. Compare repositories        ")  
+        print("1. Login                                                           ")
+        print("2. Export repositories to file (Login Required)                    ")
+        print("3. Convert master list(file) to IPNetork and print (WIP)           ")
+        print("4. Convert repositories(file) to IPNetwork and print (WIP)         ")
+        print("5. Repositories Exclusion (Diff) from file                         ")  
         print("6. Logout                      ")
         print("                               ")
         
@@ -173,7 +206,12 @@ if __name__ == '__main__':
 
 
         elif choice == "5":
-            print("++ Compare repositories (skip) ++")
+            print("++ Repositories Exclusion (diff) ++")
+            repo1 = "./files/input/repo1.txt"
+            repo2 = "./files/input/repo2.txt"
+            print("   ++ Difference between " + repo1 + " and " + repo2 + " ++")
+            sct.repositoriesDiff(repo1, repo2)
+
 
         elif choice == "6":
             print("++ Logout ++")

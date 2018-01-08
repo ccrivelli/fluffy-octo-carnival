@@ -135,9 +135,10 @@ class SecurityCenterTool():
 
         print(s2)
 
-        print("diff")
         s_diff = s1 ^ s2
-        print(s_diff)
+        ##print(s_diff)
+        return s_diff
+
 
     def logout(self):
 
@@ -210,7 +211,14 @@ if __name__ == '__main__':
             repo1 = "./files/input/repo1.txt"
             repo2 = "./files/input/repo2.txt"
             print("   ++ Difference between " + repo1 + " and " + repo2 + " ++")
-            sct.repositoriesDiff(repo1, repo2)
+            diffrepo = sct.repositoriesDiff(repo1, repo2)
+            print("diffrepo")
+
+            print(diffrepo)
+            output_file = "./files/diff.txt"
+            #for ip in diffrepo:
+            #    print(ip)
+
 
 
         elif choice == "6":

@@ -75,25 +75,34 @@ class SecurityCenterTool():
 
         # search for IP Ranges like 10.1.2.0-10.1.5.255 and create a new list of subnets with no IP ranges
         l = []
+        n = None
         
         for iprange in subnet_strings:
+            print("iprange: " + iprange)
+            # search for IP Ranges | regexp to search for a dash '-' followed by a word 
             if re.search('(?<=-)\w+',iprange):
-                print("Found!! >> " + iprange)
+                print("IP Range Found!! >> " + iprange)
                 x_subnet = iprange.split('-')
                 print(x_subnet)
-                #cidr_subnet = IPNetwork(x_subnet)
-                #l.append(cidr_subnet)
-            print("iprange: " + iprange)
-            #cidr_subnet = IPNetwork(iprange)
-            #l.append(cidr_subnet)
+                print("  start: " + x_subnet[0])
+                print("  end: " + x_subnet[1])
+                # IP Range Object
+                r = IPRange(x_subnet[0],x_subnet[1])
+                print("Convert to CIDRS:")
+                print(r.cidrs())
+                for sub in r.cidrs():
+                    n = IPNetwork(sub)
+                    l.append(n)
+                    #print("-- Printing List (IP Ranges)---")
+                    #print(l)
 
-        ''' to be uncommented ----------------------------------        
-        # iter the string list and append to IPNetwork list
-        for s in subnet_strings:
-            subnet = IPNetwork(s)
-            l.append(subnet)	 
-        '''
-        print("++ Convert " + file + " into IPNetwork list (skip) ++")
+            else:
+                n = IPNetwork(iprange)
+                l.append(n)
+                #print("-- Printing List (No Ranges)---")
+                #print(l)   
+
+        print("++ Convert " + file + " into IPNetwork list ++")
         print(" ")
         return l  
   
@@ -193,12 +202,14 @@ if __name__ == '__main__':
 
         elif choice == "4":
             '''Convert repositories(file) to IPNetwork and print'''
-            print("++ List files in dir ++")
+            print("++ List files in dir ++ \n")
             repo_path="./files/repositories"
             for f in listdir(repo_path):
                 print(f)
                 repo_list = sct.fileToIPNetworkList(repo_path + "/" + f)
+                print("++ IPNetwork List ++")
                 print(repo_list)
+                print("====================================================================================== \n")
 
 
 

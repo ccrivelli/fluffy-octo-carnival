@@ -88,7 +88,7 @@ class SecurityCenterTool():
                 print("  end: " + x_subnet[1])
                 # IP Range Object
                 r = IPRange(x_subnet[0],x_subnet[1])
-                print("Convert to CIDRS:")
+                print(">> Convert to CIDRS:")
                 print(r.cidrs())
                 for sub in r.cidrs():
                     n = IPNetwork(sub)
@@ -100,8 +100,9 @@ class SecurityCenterTool():
                 n = IPNetwork(iprange)
                 l.append(n)
                 #print("-- Printing List (No Ranges)---")
-                #print(l)   
+                #print(l)
 
+        print(" ")
         print("++ Convert " + file + " into IPNetwork list ++")
         print(" ")
         return l  
@@ -165,8 +166,8 @@ class SecurityCenterTool():
         print("                                                                   ") 
         print("1. Login                                                           ")
         print("2. Export repositories to file (Login Required)                    ")
-        print("3. Convert master list(file) to IPNetork and print (WIP)           ")
-        print("4. Convert repositories(file) to IPNetwork and print (WIP)         ")
+        print("3. Convert master list(file) to IPNetork and print                 ")
+        print("4. Convert repositories(file) to IPNetwork and print               ")
         print("5. Repositories Exclusion (Diff) from file                         ")  
         print("6. Logout                      ")
         print("                               ")
@@ -195,10 +196,15 @@ if __name__ == '__main__':
 
         elif choice == "3":
             '''Convert master list(file) to IPNetork and print'''
+            print("++ Master list file ++ \n")
             subnet_list_file = "./files/master_subnet_list.txt"
+            print(subnet_list_file)
+            print(" ")
             master_list = sct.fileToIPNetworkList(subnet_list_file)
             print(" ++ Master List ++")
             print(master_list)
+            print("====================================================================================== \n")
+
 
         elif choice == "4":
             '''Convert repositories(file) to IPNetwork and print'''
@@ -206,6 +212,7 @@ if __name__ == '__main__':
             repo_path="./files/repositories"
             for f in listdir(repo_path):
                 print(f)
+                print(" ")
                 repo_list = sct.fileToIPNetworkList(repo_path + "/" + f)
                 print("++ IPNetwork List ++")
                 print(repo_list)

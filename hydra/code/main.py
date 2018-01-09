@@ -10,16 +10,7 @@ class SecurityCenterTool():
     
     def __init__(self):
         pass
-        # credentials
-        #global hostname
-        #hostname = input("SecurityCenter Hostname (without 'https://'): ")
-        #global username
-        #username = input("Username: ")
-
-        # hide password when typed
-        #global password
-        #password = getpass.getpass("Password: ")
-
+ 
 
     def login(self):
 
@@ -40,6 +31,9 @@ class SecurityCenterTool():
         print(" ")
 
     def exportRepositories(self):
+        '''
+        export repositories to files (might contain IP Ranges as well)
+        '''
 
         print("++ Export Repositories into files ++")
         response = sc.get('repository?type=All')
@@ -70,10 +64,9 @@ class SecurityCenterTool():
     def fileToIPNetworkList(self, file):
 
         ''' 
-        import a txt containing a list of subnets into a list of IPNetwork
+        - import a txt containing a list of subnets and convert into a list of IPNetwork Objects
+        - input file might contain IP Ranges, they are identified and converted into CIDR subnets (WIP)
         '''
-
-        #subnet_list_file = "./files/master_subnet_list.txt"
 
         # read file line by line without \n and save in a list
         with open(file) as f:
@@ -100,7 +93,7 @@ class SecurityCenterTool():
             subnet = IPNetwork(s)
             l.append(subnet)	 
         '''
-        print("++ Convert " + file + " into IPNetwork list ++")
+        print("++ Convert " + file + " into IPNetwork list (skip) ++")
         print(" ")
         return l  
   
@@ -184,18 +177,22 @@ if __name__ == '__main__':
         choice = input("Enter your choice [1-6]: ")
 
         if choice == "1":
+            '''Login  '''
             sct.login()
 
         elif choice == "2":
+            '''Export repositories to file (Login Required)  '''
             sct.exportRepositories()  
 
         elif choice == "3":
+            '''Convert master list(file) to IPNetork and print'''
             subnet_list_file = "./files/master_subnet_list.txt"
             master_list = sct.fileToIPNetworkList(subnet_list_file)
             print(" ++ Master List ++")
             print(master_list)
 
         elif choice == "4":
+            '''Convert repositories(file) to IPNetwork and print'''
             print("++ List files in dir ++")
             repo_path="./files/repositories"
             for f in listdir(repo_path):
@@ -207,6 +204,7 @@ if __name__ == '__main__':
 
 
         elif choice == "5":
+            '''Repositories Exclusion (Diff) from file  '''
             print("++ Repositories Exclusion (diff) ++")
             repo1 = "./files/input/repo1.txt"
             repo2 = "./files/input/repo2.txt"
@@ -222,6 +220,7 @@ if __name__ == '__main__':
 
 
         elif choice == "6":
+            '''Logout    '''
             print("++ Logout ++")
             try:
                 sc

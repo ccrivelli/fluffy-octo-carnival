@@ -231,7 +231,7 @@ if __name__ == '__main__':
             sct.exportScanZones()		
 
         elif choice == "4":
-            '''Convert master list(file) to IPNetork and print'''
+            '''Convert master list(file) to IPNetork, sort, merge and print'''
             print("++ Master list file ++ \n")
             subnet_list_file = "./files/master_subnet_list.txt"
             print(subnet_list_file)
@@ -243,10 +243,12 @@ if __name__ == '__main__':
             print(" ")
             
             sorted_list = sorted(master_list)
+            print(">> Sorted <<")
             print(sorted_list)
             print(" ")
             
             merged_list = cidr_merge(sorted_list)
+            print(">> Sorted and Merged <<")
             print(merged_list)
             print(" ")
             

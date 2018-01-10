@@ -61,6 +61,37 @@ class SecurityCenterTool():
         print(" ")
 
 
+    def exportScanZones(self):
+        '''
+        export scan zones to files (might contain IP Ranges as well) >>  Does not exctract scanner name(s) yet!!
+        '''
+
+        print("++ Export Scan Zones into files ++")
+        response = sc.get('zone?type=All')
+        print(response.json())
+        for zone in response.json()['response']:
+            print(zone)
+            print(zone['id'])
+            response2 = sc.get('zone/'+zone['id'])
+            json_response2 = response2.json()
+            #print(" -- ")
+            #print(json_response2)
+            zone_name = json_response2['response']['name']
+            print("Name: " + zone_name)
+            if 'ipList' in json_response2['response']:
+                zone_ip_range = response2.json()['response']['ipList']
+                print("IP Range: " + zone_ip_range)
+                print("Write to file ..")
+                filepath = "./files/scanzones/" + zone_name + ".txt"
+                print(filepath)
+                f = open(filepath, 'w')
+                for subnet in zone_ip_range.split(','):
+                    f.write(subnet + '\n')
+                f.close()
+            print(" ")
+        print(" ")
+	
+
     def fileToIPNetworkList(self, file):
 
         ''' 
@@ -166,10 +197,11 @@ class SecurityCenterTool():
         print("                                                                   ") 
         print("1. Login                                                           ")
         print("2. Export repositories to file (Login Required)                    ")
-        print("3. Convert master list(file) to IPNetork and print                 ")
-        print("4. Convert repositories(file) to IPNetwork and print               ")
-        print("5. Repositories Exclusion (Diff) from file                         ")  
-        print("6. Logout                      ")
+        print("3. Export scan zones to file (Login Required)                      ")
+        print("4. Convert master list(file) to IPNetork and print                 ")
+        print("5. Convert repositories(file) to IPNetwork and print               ")
+        print("6. Repositories Exclusion (Diff) from file                         ")  
+        print("7. Logout                      ")
         print("                               ")
         
 
@@ -184,7 +216,7 @@ if __name__ == '__main__':
     
     while loop:
         sct.printMenu()
-        choice = input("Enter your choice [1-6]: ")
+        choice = input("Enter your choice [1-7]: ")
 
         if choice == "1":
             '''Login  '''
@@ -195,6 +227,10 @@ if __name__ == '__main__':
             sct.exportRepositories()  
 
         elif choice == "3":
+            '''Export scan zones to file (Login Required)'''
+            sct.exportScanZones()		
+
+        elif choice == "4":
             '''Convert master list(file) to IPNetork and print'''
             print("++ Master list file ++ \n")
             subnet_list_file = "./files/master_subnet_list.txt"
@@ -202,11 +238,25 @@ if __name__ == '__main__':
             print(" ")
             master_list = sct.fileToIPNetworkList(subnet_list_file)
             print(" ++ Master List ++")
+            
             print(master_list)
+            print(" ")
+            
+            sorted_list = sorted(master_list)
+            print(sorted_list)
+            print(" ")
+            
+            merged_list = cidr_merge(sorted_list)
+            print(merged_list)
+            print(" ")
+            
+            for sub in merged_list:
+                print(sub.cidr)
             print("====================================================================================== \n")
 
 
-        elif choice == "4":
+
+        elif choice == "5":
             '''Convert repositories(file) to IPNetwork and print'''
             print("++ List files in dir ++ \n")
             repo_path="./files/repositories"
@@ -221,7 +271,7 @@ if __name__ == '__main__':
 
 
 
-        elif choice == "5":
+        elif choice == "6":
             '''Repositories Exclusion (Diff) from file  '''
             print("++ Repositories Exclusion (diff) ++")
             repo1 = "./files/input/repo1.txt"
@@ -237,7 +287,7 @@ if __name__ == '__main__':
 
 
 
-        elif choice == "6":
+        elif choice == "7":
             '''Logout    '''
             print("++ Logout ++")
             try:
